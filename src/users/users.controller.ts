@@ -40,16 +40,13 @@ export class UsersController {
         return await this.usersService.updateUser(params.id, dto);
     }
 
-    @ApiOperation({ summary: "delete user by id" })
+    @ApiOperation({ summary: "Удалить текущего пользователя со всеми проектами" })
     @ApiResponse({ status: 200, type: UserEntity })
-    @ApiParam({ name: 'id', required: true })
     @UseGuards(AuthGuard)
-    @Delete('/:id')
+    @Delete()
+    @ApiBearerAuth('JWT-auth')
     async delete(@Req() request: Request, @Param() params) {
-        if ( request['user'].id !== parseInt(params.id)) {
-            throw new UnauthorizedException();
-        } 
-        return await this.usersService.deleteUser(params.id);
+        return await this.usersService.deleteUser(request['user']['id']);
     }
     
     @ApiOperation({ summary: "get user by id" })

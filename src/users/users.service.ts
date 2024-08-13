@@ -1,4 +1,4 @@
-import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
+import { HttpException, HttpStatus, Injectable, InternalServerErrorException } from '@nestjs/common';
 import { UserEntity } from './users.entity';
 import { CreateUserDto } from './dto/create-user.dto'
 import { UpdateUserDto } from './dto/update-user.dto'
@@ -61,8 +61,8 @@ export class UsersService {
             return true;
         }
         catch(error) {
-            console.log(error.message);
-            throw new HttpException('user has projects', HttpStatus.BAD_REQUEST) 
+            // console.log(error.message);
+            throw new InternalServerErrorException('Internal error') 
         }
     }
 

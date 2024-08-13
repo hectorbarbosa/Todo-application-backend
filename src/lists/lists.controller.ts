@@ -25,9 +25,10 @@ export class ListsController {
         return await this.listsService.createList(params.id, listDto);
     }
 
-    @ApiOperation({ summary: "Получить все списки задач по проекту" })
+    @ApiOperation({ summary: "Получить все списки по проекту" })
     @ApiResponse({ status: 200, type: [ListEntity] })
     @UseGuards(ProjectAuthGuard)
+    @ApiParam({ name: 'id', required: true })
     @Get('all/:id')
     @ApiBearerAuth('JWT-auth')
     async getAll(@Param() params) {
@@ -35,7 +36,7 @@ export class ListsController {
         return await this.listsService.findAll(params.id);
     }
 
-    @ApiOperation({ summary: "Отредактировать список задач по id" })
+    @ApiOperation({ summary: "Отредактировать список по id" })
     @ApiResponse({ status: 200, type: ListEntity })
     @ApiParam({ name: 'id', required: true })
     @UseGuards(ListAuthGuard)
@@ -45,7 +46,7 @@ export class ListsController {
         return await this.listsService.updateList(params.id, dto);
     }
 
-    @ApiOperation({ summary: "Удалить список задач по id" })
+    @ApiOperation({ summary: "Удалить список по id" })
     @ApiResponse({ status: 200, type: ListEntity })
     @ApiParam({ name: 'id', required: true })
     @UseGuards(ListAuthGuard)
@@ -55,7 +56,7 @@ export class ListsController {
         return await this.listsService.deleteList(params.id);
     }
     
-    @ApiOperation({ summary: "Получить список задач по id" })
+    @ApiOperation({ summary: "Получить список по id" })
     @ApiResponse({ status: 200, type: ListEntity })
     @ApiParam({ name: 'id', required: true })
     @UseGuards(ListAuthGuard)

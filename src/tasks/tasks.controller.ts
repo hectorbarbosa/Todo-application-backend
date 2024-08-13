@@ -26,6 +26,7 @@ export class TasksController {
 
     @ApiOperation({ summary: "Получить все задачи из списка" })
     @ApiResponse({ status: 200, type: [TaskEntity] })
+    @ApiParam({ name: 'id', required: true })
     @UseGuards(ListAuthGuard)
     @Get('/all/:id')
     @ApiBearerAuth('JWT-auth')
@@ -66,7 +67,8 @@ export class TasksController {
 
     @ApiOperation({ summary: "Перетаскивание задачи" })
     @ApiResponse({ status: 200, type: TaskEntity })
-    @ApiParam({ name: 'id', required: true })
+    @ApiParam({ name: 'listId', required: true })
+    @ApiParam({ name: 'taskId', required: true })
     @UseGuards(DragTaskAuthGuard)
     @Patch('/drag/:listId/:taskId')
     @ApiBearerAuth('JWT-auth')

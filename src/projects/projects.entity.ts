@@ -31,11 +31,11 @@ export class ProjectEntity {
   
   @ApiProperty({ example: '10', description: 'Уникальный id пользователя' })
   @ApiProperty({ type: () => UserEntity })
-  @ManyToOne( () => UserEntity, u => u.ps ) 
+  @ManyToOne( () => UserEntity, u => u.ps, {
+      onDelete: "CASCADE",
+  }) 
   user: UserEntity;
 
   @OneToMany(() => ListEntity, (list) => list.project)
-    // eager: true,
-  // })
   ls: ListEntity[];
 }

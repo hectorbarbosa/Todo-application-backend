@@ -10,7 +10,7 @@ import { Controller, Post, Body} from '@nestjs/common';
 export class AuthController {
     constructor(private authService: AuthService) {}
 
-    @ApiOperation({ summary: "Авторизация" })
+    @ApiOperation({ summary: "Аутентификация" })
     @ApiResponse({ status: 200, description: "Пользовательский токен" })
     @Post('/login')
     signIn(@Body() userDto: SignInUserDto) {

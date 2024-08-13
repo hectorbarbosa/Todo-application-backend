@@ -152,7 +152,7 @@ export class TasksService {
                 .where("task.id = :id", { id: taskId })
                 .getRawOne();
 
-            console.log(orderNumber);
+            // console.log(orderNumber);
             return orderNumber;
         }
         catch(error) {
